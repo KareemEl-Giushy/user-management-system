@@ -42,7 +42,7 @@
                                             <label for="custom-checkbox" class="custom-control-label" style="cursor:pointer;">Remember Me</label>
                                         </div>
                                         <div class="float-right">
-                                            <a href="#">Forget Password ?</a>
+                                            <a href="#" id="forget-pass">Forget Password ?</a>
                                         </div>
                                         <div class="clearfix"></div>
                                     </div>
@@ -59,7 +59,7 @@
                                 <h2 class="text-center font-weight-bold text-white">Hello People !</h2>
                                 <hr class="my-3 bg-light" style="height:2px;border-radius:100px;">
                                 <p class="text-center font-weight-bolder text-capitalize text-white">Enter your personal info, so you could start your journey with us ...</p>
-                                <button class="btn btn-outline-light btn-lg align-self-center font-weight-bolder mt-4 w-50" style="border-radius:100px;border-width:2px;">Sign Up</button>
+                                <button class="btn btn-outline-light btn-lg align-self-center font-weight-bolder mt-4 w-50" style="border-radius:100px;border-width:2px;" id="register-btn">Sign Up</button>
                             </div>
                         </div>
                     </div>
@@ -77,7 +77,7 @@
                                 <h2 class="text-center font-weight-bold text-white">Have An Account ?</h2>
                                 <hr class="my-3 bg-light" style="height:2px;border-radius:100px;">
                                 <p class="text-center font-weight-bolder text-capitalize text-white">Enter your personal info, so you could start your journey with us ...</p>
-                                <button class="btn btn-outline-light btn-lg align-self-center font-weight-bolder mt-4 w-50" style="border-radius:100px;border-width:2px;">Sign In</button>
+                                <button class="btn btn-outline-light btn-lg align-self-center font-weight-bolder mt-4 w-50 login-btn" style="border-radius:100px;border-width:2px;">Sign In</button>
                             </div>
                         </div>
                     </div>
@@ -140,7 +140,7 @@
                             <div class="card-body d-flex flex-column justify-content-center">
                                 <h2 class="text-center font-weight-bold text-white">Reset Password</h2>
                                 <hr class="my-3 bg-light" style="height:2px;border-radius:100px;">
-                                <button class="btn btn-outline-light btn-lg align-self-center font-weight-bolder mt-4 w-50" style="border-radius:100px;border-width:2px;">Go Back</button>
+                                <button class="btn btn-outline-light btn-lg align-self-center font-weight-bolder mt-4 w-50 login-btn" style="border-radius:100px;border-width:2px;">Go Back</button>
                             </div>
                         </div>
                     </div>
@@ -174,5 +174,6 @@
     <!-- javascipt -->
     <script src="layout/js/jquery-3.5.1.min.js"></script>
     <script src="layout/js/bootstrap.bundle.min.js"></script>
+    <script src="layout/js/main.js"></script>
 </body>
 </html>
