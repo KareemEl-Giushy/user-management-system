@@ -16,4 +16,10 @@ $(document).ready(function () {
         $("div.row.wrapper")[1].style.display = "none";
         $("div.row.wrapper")[2].style.display = "flex";
     });
+
+    /* ===== Ajax Requests ===== */
+    
+    /* Register Form */
+    $.Ajax
+
 });
