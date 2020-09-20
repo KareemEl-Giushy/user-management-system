@@ -93,8 +93,11 @@
                                                 <i class="far fa-user fa-lg"></i>
                                             </span>
                                         </div>
-                                        <input type="text" name="first-name" id="first-name" class="form-control rounded-0" placeholder="First Name">
-                                        <input type="text" name="last-name" id="last-name" class="form-control rounded-0" placeholder="Last Name">
+                                        <input type="text" name="first-name" id="first-name" class="form-control rounded-0" placeholder="First Name" required>
+                                        <input type="text" name="last-name" id="last-name" class="form-control rounded-0" placeholder="Last Name" required>
+                                        <div class="invalid-feedback">
+                                            Don't leave the field empty.
+                                        </div>
                                     </div>
                                     <div class="input-group input-group-lg form-group">
                                         <div class="input-group-prepend">
@@ -102,7 +105,10 @@
                                                 <i class="far fa-envelope fa-lg"></i>
                                             </span>
                                         </div>
-                                        <input type="email" name="email" id="remail" class="form-control rounded-0" placeholder="Email" required autofocus>
+                                        <input type="email" name="email" id="remail" class="form-control rounded-0" placeholder="Email" required>
+                                        <div class="invalid-feedback">
+                                            Please provide a valid email.
+                                        </div>
                                     </div>
                                     <div class="input-group input-group-lg form-group">
                                         <div class="input-group-prepend">
@@ -111,6 +117,9 @@
                                             </span>
                                         </div>
                                         <input type="password" name="password" id="rpassword" class="form-control rounded-0" placeholder="Password" required minlength="7">
+                                        <div class="invalid-feedback">
+                                            Please provide a valid  7-character password.
+                                        </div>
                                     </div>
                                     <div class="form-group input-group input-group-lg">
                                         <div class="input-group-prepend">
@@ -119,6 +128,9 @@
                                             </span>
                                         </div>
                                         <input type="password" name="re-password" id="re-password" class="form-control rounded-0" placeholder="Re-Password" required minlength="7">
+                                        <div class="invalid-feedback">
+                                            Please write the same password again.
+                                        </div>
                                     </div>
                                     <div class="form-group">
                                         <input type="submit" value="Sign Up" class="btn btn-primary btn-block btn-lg btn-block btn-sign-style">

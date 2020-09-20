@@ -33,6 +33,19 @@ body {
     border-top-right-radius: .25rem!important;
     border-bottom-right-radius: .25rem!important;
 }
+/*
+    End custom Bootstrap classes
+==================================
+*/
+/*
+    Global Classes
+==================================
+*/
+
+/*
+    End Global Classes
+==================================
+*/
 .wrapper {
     height: 100vh;
 }
