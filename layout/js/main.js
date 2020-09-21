@@ -4,9 +4,9 @@ $(document).ready(function () {
     /* Forms Buttons */
     $("#register-btn").on('click', function () {
         // console.log($("div.row.wrapper")[0]);
-        $("div.row.wrapper")[0].style.display = "none";
-        $("div.row.wrapper")[1].style.display = "flex";
-        $("div.row.wrapper")[2].style.display = "none";
+        forms[0].style.display = "none";
+        forms[1].style.display = "flex";
+        forms[2].style.display = "none";
     });
     $("#registerback, #resetback").click(function () {
         // console.log($("div.row.wrapper")[0]);
@@ -17,9 +17,9 @@ $(document).ready(function () {
     });
     $("#forget-pass").on('click', function () {
         // console.log($("div.row.wrapper")[0]);
-        $("div.row.wrapper")[0].style.display = "none";
-        $("div.row.wrapper")[1].style.display = "none";
-        $("div.row.wrapper")[2].style.display = "flex";
+        forms[0].style.display = "none";
+        forms[1].style.display = "none";
+        forms[2].style.display = "flex";
     });
 
     
@@ -32,58 +32,59 @@ $(document).ready(function () {
         password = $('#register-form #re-password');*/
     
      // Form Validation
-     var $errors = 0;
-    $('#register-form #first-name, #register-form #last-name, #register-form #remail').keyup(function () {
-          if(!this.value == "" || !this.value == null) {
-             // valid
-             this.value = this.value.trim();
+    function formValidationText(selector) {
+            if(!selector.value == "" || !selector.value == null) {
 
-            if(this.checkValidity()) {
-                //valid
-                console.log(this.value);
-                this.classList.add('is-valid');
-                this.classList.remove('is-invalid');
-            }else {
-                // bad input
-                this.classList.add('is-invalid');
-                this.classList.remove('is-valid');
-                $errors++;
-            }
-         }else {
-            // bad input
-            this.classList.add('is-invalid');
-            this.classList.remove('is-valid');
-            $errors++;
-         }
-     });
-    $('#register-form #rpassword').keyup(function () {
-         if(!this.value == "" || !this.value == null) {
-            //valid
-            if(this.value.length >= 7){
-                // valid
-                if(this.checkValidity()) {
+                if(selector.checkValidity()) {
                     //valid
-                    this.classList.add('is-valid');
-                    this.classList.remove('is-invalid');
+                    // console.log(selector.value);
+                    selector.classList.add('is-valid');
+                    selector.classList.remove('is-invalid');
+                }else {
+                    selector.classList.add('is-invalid');
+                    selector.classList.remove('is-valid');
+                }
+            
+            }else {
+                selector.classList.add('is-invalid');
+                selector.classList.remove('is-valid');
+            }
+
+    }
+    function formValidationPass(selector) {
+        if(!selector.value == "" || !selector.value == null) {
+            //valid
+            if(selector.value.length >= 7){
+                // valid
+                if(selector.checkValidity()) {
+                    //valid
+                    selector.classList.add('is-valid');
+                    selector.classList.remove('is-invalid');
                 }else {
                     // bad input
-                    this.classList.add('is-invalid');
-                    this.classList.remove('is-valid');
-                    $errors++;
+                    selector.classList.add('is-invalid');
+                    selector.classList.remove('is-valid');
                 }
             }else {
                 // bad input
-                this.classList.add('is-invalid');
-                this.classList.remove('is-valid');
-                $errors++;
-             }
+                selector.classList.add('is-invalid');
+                selector.classList.remove('is-valid');
+            }
         }else {
             // bad input
-            this.classList.add('is-invalid');
-            this.classList.remove('is-valid');
-            $errors++;
+            selector.classList.add('is-invalid');
+            selector.classList.remove('is-valid');
+
          }
+    }
+    $('#first-name, #last-name, #remail').keyup(function () {
+        formValidationText(this);
+    });
+   
+    $('#rpassword').keyup(function () {
+        formValidationPass(this);
      });
+
     $('#register-form #re-password').keyup(function () {
         if(this.value == $('#register-form #rpassword').val()){
             // valid
@@ -93,11 +94,39 @@ $(document).ready(function () {
             // bad input
             this.classList.add('is-invalid');
             this.classList.remove('is-valid');
-            $errors++;
         }
      });
+
     $('#register-form input[type="submit"]').click(function (e) {
-        // e.preventDefault();
-        console.log('clicked');
+        if(status == []) {
+            $("#f-msg").css('display', "none");
+            e.preventDefault();
+            console.log('clicked');
+            $.ajax({
+                method: 'POST',
+                url: "includes/objects/index.object.php",
+                async: true,
+                data: {
+                    'first-name': $("#first-name").val(),
+                    'last-name': $("#last-name").val(),
+                    'email': $("#remail").val(),
+                    'password': $("#rpassword").val(),
+                    're-password': $("#re-password").val(),
+                },
+                success: function (rt, rs, xhr) {
+                   console.log(rt);
+                },
+                error: function(xhr, rs, rt){
+                    console.log(rs);
+                },
+            });
+        }else {
+         
+            $("#f-msg").css('display', "block");
+        
+        }
     });
+
+
+    // End Document Ready
 });
