@@ -104,7 +104,7 @@ $(document).ready(function () {
             console.log('clicked');
             $.ajax({
                 method: 'POST',
-                url: "includes/objects/index.object.php",
+                url: "vendor/objects/index.object.php",
                 async: true,
                 data: {
                     'first-name': $("#first-name").val(),
