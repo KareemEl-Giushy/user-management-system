@@ -123,7 +123,8 @@ $(document).ready(function () {
                     're-password': $("#re-password").val(),
                 },
                 success: function (rt, rs, xhr) {
-                   console.log(rt);
+                //    console.log(rt);
+                   $("#s-msg").css('display', 'block');
                 },
                 error: function(xhr, rs, rt){
                     console.log(rs);

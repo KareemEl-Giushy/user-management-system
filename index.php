@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kareem System</title>
+    <link rel="icon" type="image/png" href="favicon.png"/>
     <link rel="stylesheet" href="layout/css/all.min.css">
     <link rel="stylesheet" href="layout/css/bootstrap.min.css">
     <link rel="stylesheet" href="layout/css/style.css">
@@ -137,6 +138,9 @@
                                     </div>
                                     <div class="form-group" id="f-msg" style="display: none;">
                                         <div class="alert alert-danger font-weight-bold"><i class="fas fa-exclamation-triangle"></i> *Please Enter Valid Information.</div>
+                                    </div>
+                                    <div class="form-group" id="s-msg" style="display: none;">
+                                        <div class="alert alert-success font-weight-bold text-capitalize"><i class="fas fa-check-circle"></i> All Done You can sign in now.</div>
                                     </div>
                                 </form>
                             </div>
