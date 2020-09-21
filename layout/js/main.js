@@ -40,6 +40,7 @@ $(document).ready(function () {
                     // console.log(selector.value);
                     selector.classList.add('is-valid');
                     selector.classList.remove('is-invalid');
+                    return true;
                 }else {
                     selector.classList.add('is-invalid');
                     selector.classList.remove('is-valid');
@@ -60,6 +61,7 @@ $(document).ready(function () {
                     //valid
                     selector.classList.add('is-valid');
                     selector.classList.remove('is-invalid');
+                    return true;
                 }else {
                     // bad input
                     selector.classList.add('is-invalid');
@@ -75,6 +77,7 @@ $(document).ready(function () {
             selector.classList.add('is-invalid');
             selector.classList.remove('is-valid');
 
+
          }
     }
     $('#first-name, #last-name, #remail').keyup(function () {
@@ -84,21 +87,27 @@ $(document).ready(function () {
     $('#rpassword').keyup(function () {
         formValidationPass(this);
      });
-
+    var repass = false;
     $('#register-form #re-password').keyup(function () {
         if(this.value == $('#register-form #rpassword').val()){
             // valid
             this.classList.add('is-valid');
             this.classList.remove('is-invalid');
+            repass = true
         }else {
             // bad input
             this.classList.add('is-invalid');
             this.classList.remove('is-valid');
+            repass = false
         }
      });
 
     $('#register-form input[type="submit"]').click(function (e) {
-        if(status == []) {
+        var isfirst = formValidationText(document.getElementById('first-name'));
+        var islast = formValidationText(document.getElementById('last-name'));
+        var isemail = formValidationText(document.getElementById('remail'));
+        var pass = formValidationText(document.getElementById('rpassword'));
+        if(isfirst == true && islast == true && isemail == true && pass == true && repass == true) {
             $("#f-msg").css('display', "none");
             e.preventDefault();
             console.log('clicked');
