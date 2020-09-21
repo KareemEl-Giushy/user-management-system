@@ -1,14 +1,19 @@
 $(document).ready(function () {
+    var forms  = document.querySelectorAll("div.wrapper");
+    console.log();
     /* Forms Buttons */
     $("#register-btn").on('click', function () {
         // console.log($("div.row.wrapper")[0]);
         $("div.row.wrapper")[0].style.display = "none";
         $("div.row.wrapper")[1].style.display = "flex";
+        $("div.row.wrapper")[2].style.display = "none";
     });
-    $(".login-btn").on('click', function () {
+    $("#registerback, #resetback").click(function () {
         // console.log($("div.row.wrapper")[0]);
-        $("div.row.wrapper")[0].style.display = "flex";
-        $("div.row.wrapper")[1].style.display = "none";
+        // console.log('hello this is Back Button');
+        forms[2].style.display = "none";
+        forms[1].style.display = "none";
+        forms[0].style.display = "flex";
     });
     $("#forget-pass").on('click', function () {
         // console.log($("div.row.wrapper")[0]);
@@ -92,7 +97,7 @@ $(document).ready(function () {
         }
      });
     $('#register-form input[type="submit"]').click(function (e) {
-        e.preventDefault();
+        // e.preventDefault();
         console.log('clicked');
     });
 });

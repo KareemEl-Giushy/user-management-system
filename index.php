@@ -77,7 +77,7 @@
                                 <h2 class="text-center font-weight-bold text-white">Have An Account ?</h2>
                                 <hr class="my-3 bg-light" style="height:2px;border-radius:100px;">
                                 <p class="text-center font-weight-bolder text-capitalize text-white">Enter your personal info, so you could start your journey with us ...</p>
-                                <button class="btn btn-outline-light btn-lg align-self-center font-weight-bolder mt-4 w-50 login-btn" style="border-radius:100px;border-width:2px;">Sign In</button>
+                                <button class="btn btn-outline-light btn-lg align-self-center font-weight-bolder mt-4 w-50" style="border-radius:100px;border-width:2px;" id='registerback'>Sign In</button>
                             </div>
                         </div>
                     </div>
@@ -152,7 +152,7 @@
                             <div class="card-body d-flex flex-column justify-content-center">
                                 <h2 class="text-center font-weight-bold text-white">Reset Password</h2>
                                 <hr class="my-3 bg-light" style="height:2px;border-radius:100px;">
-                                <button class="btn btn-outline-light btn-lg align-self-center font-weight-bolder mt-4 w-50 login-btn" style="border-radius:100px;border-width:2px;">Go Back</button>
+                                <button class="btn btn-outline-light btn-lg align-self-center font-weight-bolder mt-4 w-50" style="border-radius:100px;border-width:2px;" id="resetback">Go Back</button>
                             </div>
                         </div>
                     </div>
