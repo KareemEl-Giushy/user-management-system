@@ -1,1 +1,1 @@
-# User Managment System Standerd Native PHP
+# User Managment System Standard Native PHP
