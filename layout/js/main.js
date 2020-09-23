@@ -34,7 +34,8 @@ $(document).ready(function () {
      // Form Validation
     function formValidationText(selector) {
             if(!selector.value == "" || !selector.value == null) {
-
+                 // valid
+                selector.value = selector.value.trim();
                 if(selector.checkValidity()) {
                     //valid
                     // console.log(selector.value);
@@ -121,9 +122,10 @@ $(document).ready(function () {
                     'email': $("#remail").val(),
                     'password': $("#rpassword").val(),
                     're-password': $("#re-password").val(),
+                    "action": "register",
                 },
                 success: function (rt, rs, xhr) {
-                //    console.log(rt);
+                   console.log(rt);
                    $("#s-msg").css('display', 'block');
                 },
                 error: function(xhr, rs, rt){

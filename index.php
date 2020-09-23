@@ -18,7 +18,7 @@
                     <div class="col-12 col-sm-12 col-md-12 p-0 col-lg">
                         <div class="card rounded-left">
                             <div class="card-body">
-                                <h2 class="card-title text-capitalize text-center text-primary font-weight-bold">Sign into your account</h5>
+                                <h2 class="card-title text-capitalize text-center text-primary font-weight-bold">Sign into your account</h2>
                                 <hr class="my-3">
                                 <form action="#" method="post" class="px-1" id="login-form">
                                     <div class="input-group input-group-lg form-group">
@@ -85,7 +85,7 @@
                     <div class="col-12 col-sm-12 col-md-12 p-0 col-lg">
                         <div class="card rounded-right">
                             <div class="card-body">
-                                <h2 class="card-title text-capitalize text-center text-primary font-weight-bold">Create A New Account</h5>
+                                <h2 class="card-title text-capitalize text-center text-primary font-weight-bold">Create A New Account</h2>
                                 <hr class="my-3">
                                 <form action="#" method="post" class="px-1" id="register-form">
                                     <div class="input-group form-group input-group-lg">
@@ -166,7 +166,7 @@
                     <div class="col-12 col-sm-12 col-md-12 p-0 col-lg">
                         <div class="card rounded-right h-100">
                             <div class="card-body">
-                                <h2 class="card-title text-capitalize text-center text-primary font-weight-bold">Forget Your Password ?</h5>
+                                <h2 class="card-title text-capitalize text-center text-primary font-weight-bold">Forget Your Password ?</h2>
                                 <p class="text-capitalize text-center p-2">To Reset Your Password, Enter Email Address And we will send you an email with the instructions</p>
                                 <hr class="my-3">
                                 <form action="#" method="post" class="px-1" id="reset-form">
