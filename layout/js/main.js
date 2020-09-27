@@ -89,8 +89,8 @@ $(document).ready(function () {
         formValidationPass(this);
      });
     var repass = false;
-    $('#register-form #re-password').keyup(function () {
-        if(this.value == $('#register-form #rpassword').val()){
+    $('#re-password').keyup(function () {
+        if(this.value == $('#rpassword').val()){
             // valid
             this.classList.add('is-valid');
             this.classList.remove('is-invalid');
