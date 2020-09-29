@@ -81,6 +81,20 @@ $(document).ready(function () {
 
          }
     }
+    function repassf(selector) {
+        if(selector.value == $('#rpassword').val()){
+            // valid
+            selector.classList.add('is-valid');
+            selector.classList.remove('is-invalid');
+            return true;
+        }else {
+            // bad input
+            selector.classList.add('is-invalid');
+            selector.classList.remove('is-valid');
+            return false;
+        }
+    }
+
     $('#first-name, #last-name, #remail').keyup(function () {
         formValidationText(this);
     });
@@ -88,33 +102,23 @@ $(document).ready(function () {
     $('#rpassword').keyup(function () {
         formValidationPass(this);
      });
-    var repass = false;
     $('#re-password').keyup(function () {
-        if(this.value == $('#rpassword').val()){
-            // valid
-            this.classList.add('is-valid');
-            this.classList.remove('is-invalid');
-            repass = true
-        }else {
-            // bad input
-            this.classList.add('is-invalid');
-            this.classList.remove('is-valid');
-            repass = false
-        }
+        repassf(this);
      });
 
     $('#register-form input[type="submit"]').click(function (e) {
+        e.preventDefault();
         var isfirst = formValidationText(document.getElementById('first-name'));
         var islast = formValidationText(document.getElementById('last-name'));
         var isemail = formValidationText(document.getElementById('remail'));
         var pass = formValidationText(document.getElementById('rpassword'));
+        var repass = repassf(document.getElementById('re-password'));
         if(isfirst == true && islast == true && isemail == true && pass == true && repass == true) {
             $("#f-msg").css('display', "none");
-            e.preventDefault();
             console.log('clicked');
             $.ajax({
                 method: 'POST',
-                url: "vendor/objects/index.object.php",
+                url: "core/objects/index.object.php",
                 async: true,
                 data: {
                     'first-name': $("#first-name").val(),
@@ -135,7 +139,6 @@ $(document).ready(function () {
         }else {
          
             $("#f-msg").css('display', "block");
-        
         }
     });
 

@@ -1,5 +1,7 @@
 <?php
 include '../functions/input_handler.inc.php';
+include '../functions/connect.inc.php';
+
     class index {
 
 
@@ -32,6 +34,7 @@ include '../functions/input_handler.inc.php';
                 var_dump( $inp->validate($repass, ['empty', 'len', 're'], $pass) );
             }
         }
+        
         public function reset_password() {
 
         }
@@ -47,11 +50,11 @@ include '../functions/input_handler.inc.php';
         }
         
         if($_POST['action'] == 'login'){
-
+            $act->login();
         }
 
         if($_POST['action'] == 'resetpass'){
-
+            $act->reset_password();
         }
 
     }else {
