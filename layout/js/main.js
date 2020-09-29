@@ -111,7 +111,7 @@ $(document).ready(function () {
         var isfirst = formValidationText(document.getElementById('first-name'));
         var islast = formValidationText(document.getElementById('last-name'));
         var isemail = formValidationText(document.getElementById('remail'));
-        var pass = formValidationText(document.getElementById('rpassword'));
+        var pass = formValidationPass(document.getElementById('rpassword'));
         var repass = repassf(document.getElementById('re-password'));
         if(isfirst == true && islast == true && isemail == true && pass == true && repass == true) {
             $("#f-msg").css('display', "none");

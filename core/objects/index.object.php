@@ -27,11 +27,46 @@ include '../functions/connect.inc.php';
                 $repass         =  trim( $inp->sanitize($_POST['re-password'], 'st') );
                 
                 /* Inputs Validation*/
-                var_dump( $inp->validate($first_name, ['empty']) );
-                var_dump( $inp->validate($last_name, ['empty']) );
-                var_dump( $inp->validate($email, ['empty', 'email']) );
-                var_dump( $inp->validate($pass, ['empty', 'len']) );
-                var_dump( $inp->validate($repass, ['empty', 'len', 're'], $pass) );
+                if( empty($inp->validate($first_name, ['empty'])) ) {
+
+                    echo $first_name;
+
+                }else {
+                    echo 'First Name Can\'t Be Empty';
+                }
+
+                if( empty($inp->validate($last_name, ['empty'])) ) {
+
+                    echo $last_name;
+
+                }else {
+                    echo 'Last Name Can\'t Be Empty';
+                }
+                
+                if( empty($inp->validate($email, ['empty', 'email'])) ) {
+
+                    echo $email;
+                    
+                }else {
+                    echo 'Please Enter A Valid Email Address';
+                }
+                
+                if( empty($inp->validate($pass, ['empty', 'len'])) ) {
+
+                    echo $pass;
+                    
+                }else {
+                    echo 'Please Enter A 7 characters long Password';
+                }
+                
+                if( empty($inp->validate($repass, ['empty', 'len', 're'], $pass)) ) {
+                    
+                    echo $repass;
+
+                }else {
+                    echo 'Please Write The Same Password';
+                }
+
             }
         }
         
