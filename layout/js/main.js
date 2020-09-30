@@ -131,6 +131,9 @@ $(document).ready(function () {
                 success: function (rt, rs, xhr) {
                    console.log(rt);
                    $("#s-msg").css('display', 'block');
+                   forms[2].style.display = "none";
+                   forms[1].style.display = "none";
+                   forms[0].style.display = "flex";
                 },
                 error: function(xhr, rs, rt){
                     console.log(rs);
