@@ -58,11 +58,11 @@ include '../templates/msg.inc.php';
                         $first_name,
                         $last_name,
                         $email,
-                        $pass,
+                        $hpass,
                     );
                     if($msg <= 0) {
                         //Register Failure
-                        echo $alert->alert('danger', 'This Email is Already Registerd');
+                        echo $alert->alert('danger', $msg);
 
                     }
                     

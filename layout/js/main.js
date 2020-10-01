@@ -82,7 +82,7 @@ $(document).ready(function () {
          }
     }
     function repassf(selector) {
-        if(selector.value == $('#rpassword').val()){
+        if(selector.value == $('#rpassword').val() && selector.value != ""){
             // valid
             selector.classList.add('is-valid');
             selector.classList.remove('is-invalid');
@@ -130,6 +130,16 @@ $(document).ready(function () {
                 },
                 success: function (rt, rs, xhr) {
                    console.log(rt);
+                   
+                   if(rt == "") {
+                        $("#s-msg").css('display', 'block');
+                        forms[2].style.display = "none";
+                        forms[1].style.display = "none";
+                        forms[0].style.display = "flex";
+                        
+                        // another way:-
+                        // window.location = 'index.html';
+                    }
                 },
                 error: function(xhr, rs, rt){
                     console.log(rs);
