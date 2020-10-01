@@ -1,6 +1,7 @@
 <?php
 include '../functions/input_handler.inc.php';
-include '../functions/connect.inc.php';
+include '../functions/auth.php';
+include '../templates/msg.inc.php';
 
     class index {
 
@@ -13,11 +14,6 @@ include '../functions/connect.inc.php';
             // "first-name=&last-name=&email=&password=&re-password=&action="
             if(isset($_POST['first-name']) && isset($_POST['last-name']) && isset($_POST['email']) && isset($_POST['password']) && isset($_POST['re-password'])) {
                 /* Sanitize */
-                // $first_name     = filter_var($_POST['first-name'], FILTER_SANITIZE_SPECIAL_CHARS);
-                // $last_name      = filter_var($_POST['last-name'], FILTER_SANITIZE_SPECIAL_CHARS);
-                // $email          = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
-                // $pass           = filter_var($_POST['password'], FILTER_SANITIZE_STRING);
-                // $repass         = filter_var($_POST['re-password'], FILTER_SANITIZE_STRING);
                 $inp = new input_handler();
 
                 $first_name     =  trim( $inp->sanitize($_POST['first-name'], 'st') );
@@ -27,44 +23,53 @@ include '../functions/connect.inc.php';
                 $repass         =  trim( $inp->sanitize($_POST['re-password'], 'st') );
                 
                 /* Inputs Validation*/
-                if( empty($inp->validate($first_name, ['empty'])) ) {
+                $err = [];
+                if( !empty($inp->validate($first_name, ['empty'])) ) {
 
-                    echo $first_name;
-
-                }else {
-                    echo 'First Name Can\'t Be Empty';
+                    $err[] = 'First Name Can\'t Be Empty';
                 }
 
-                if( empty($inp->validate($last_name, ['empty'])) ) {
+                if( !empty($inp->validate($last_name, ['empty'])) ) {
 
-                    echo $last_name;
-
-                }else {
-                    echo 'Last Name Can\'t Be Empty';
+                    $err[] = 'Last Name Can\'t Be Empty';
                 }
                 
-                if( empty($inp->validate($email, ['empty', 'email'])) ) {
+                if( !empty($inp->validate($email, ['empty', 'email'])) ) {
 
-                    echo $email;
-                    
-                }else {
-                    echo 'Please Enter A Valid Email Address';
+                    $err[] = 'Please Enter A Valid Email Address';
                 }
                 
-                if( empty($inp->validate($pass, ['empty', 'len'])) ) {
+                if( !empty($inp->validate($pass, ['empty', 'len'])) ) {
 
-                    echo $pass;
-                    
-                }else {
-                    echo 'Please Enter A 7 characters long Password';
+                    $err[] = 'Please Enter A 7 characters long Password';
                 }
                 
-                if( empty($inp->validate($repass, ['empty', 'len', 're'], $pass)) ) {
-                    
-                    echo $repass;
+                if( !empty($inp->validate($repass, ['empty', 'len', 're'], $pass)) ) {
 
+                    $err[] = 'Please Write The Same Password';
+                }
+
+                // Register Data
+                $alert = new msg();
+                if(empty($err)){
+                    $hpass = sha1($pass);
+                    $user = new auth();
+                    $msg = $user->register(
+                        $first_name,
+                        $last_name,
+                        $email,
+                        $pass,
+                    );
+                    if($msg <= 0) {
+                        //Register Failure
+                        echo $alert->alert('danger', 'This Email is Already Registerd');
+
+                    }
+                    
                 }else {
-                    echo 'Please Write The Same Password';
+                    foreach ($err as $er) {
+                        echo $alert->alert('danger', $er);
+                    }
                 }
 
             }
