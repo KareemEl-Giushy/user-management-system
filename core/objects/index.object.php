@@ -62,13 +62,13 @@ include '../templates/msg.inc.php';
                     );
                     if($msg <= 0) {
                         //Register Failure
-                        echo $alert->alert('danger', $msg);
+                        echo $alert->alert('danger', $msg, 'fas fa-exclamation-triangle');
 
                     }
                     
                 }else {
                     foreach ($err as $er) {
-                        echo $alert->alert('danger', $er);
+                        echo $alert->alert('danger', $er, 'fas fa-exclamation-triangle');
                     }
                 }
 

@@ -139,6 +139,8 @@ $(document).ready(function () {
                         
                         // another way:-
                         // window.location = 'index.html';
+                    }else {
+                        $('#msg-box').append(rt);
                     }
                 },
                 error: function(xhr, rs, rt){
