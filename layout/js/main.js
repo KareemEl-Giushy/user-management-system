@@ -152,6 +152,50 @@ $(document).ready(function () {
             $("#f-msg").css('display', "block");
         }
     });
+   /* ====== Login Form ====== */
+    /*
+    var loginForm = $("#login-form"),
+        lEmail = $("#email"),
+        lPass = $("#password");*/
+        $("#email").on('keyup', function() {
+            formValidationText(this);
+        });
+        $("#password").keyup(function() {
+            formValidationText(this);
+        });
+        $("#login-form input[type='submit']").click(function (e) {
+            e.preventDefault();
+            var email = formValidationText(document.getElementById("email")); 
+            var pass = formValidationText(document.getElementById("password"));
+            if(email == true && pass == true) {
+                $("#f-msg-login").css("display", "none");
+                $.ajax({
+                    method: "POST",
+                    url: "core/objects/index.object.php",
+                    async: true,
+                    data: {
+                        email: $("#email").val(),
+                        password: $("#password").val(),
+                        action: "login",
+                    },
+                    success: function (rt, rs, xhr) {
+                        console.log(rs);
+                        console.log(rt);
+                        if(rt == "") {
+
+                        }else {
+                            $("#msg-box-login").append(rt);
+                        }
+                    },
+                    error: function (xhr, rs, rt) {
+                      console.log(rs);  
+                    },
+                });
+            }else {
+                $("#f-msg-login").css("display", "block");
+            }
+        });
+    
 
 
     // End Document Ready

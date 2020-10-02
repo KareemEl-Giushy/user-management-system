@@ -18,8 +18,21 @@ require_once 'connect.inc.php';
             }
         }
 
+        function login($email, $password) {
+            if($this->user_exist($email)){
+                $stmt = $this->conn->prepare("SELECT email, `password` FROM users WHERE email = ? AND `password` = ?");
+                $stmt->execute([
+                    $email,
+                    $password
+                ]);
+                return $stmt->rowCount();
+            }else {
+                return "There Is No User With This Email Address";
+            }
+        }
+
         function user_exist($email) {
-            $stmt = $this->conn->prepare("SELECT email, `password` FROM users WHERE email = ?");
+            $stmt = $this->conn->prepare("SELECT email FROM users WHERE email = ?");
             $stmt->execute([$email]);
             $crows = $stmt->rowCount();
             

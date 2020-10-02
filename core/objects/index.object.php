@@ -7,7 +7,46 @@ include '../templates/msg.inc.php';
 
 
         public function login() {
+            // "email=&password=&action="
+            $inp = new input_handler();
+            /* Sanitization */
+            $email = $inp->sanitize($_POST['email'], 'email');
+            $password = trim( $inp->sanitize($_POST['password'], 'st') );
 
+            /* Validation */
+            $err = [];
+            if(!empty( $inp->validate($email, ['empty', 'email']) )) {
+                $err[] = "Please Enter A Valid Email Address";
+            }
+
+            if(!empty( $inp->validate($password, ['empty']) )) {
+                $err[] = "Password Can't Be Empty";
+            }
+
+            $alert = new msg();
+            if(empty($err)) {
+                $hpass = sha1($password);
+                $user = new auth();
+                $msg = $user->login($email, $hpass);
+
+                if($msg > 0) {
+                    // User Exists Redirect Him To Home Page
+                    // User In our database and his password and email is correct
+
+                    
+
+                }elseif($msg == 0) {
+                    // user credintials is wrong
+                    echo $alert->alert('danger', "Incorrect Email Or Password", 'fas fa-exclamation-triangle');
+               
+                }else {
+                    echo $alert->alert('danger', $msg, 'fas fa-exclamation-triangle');
+                }
+            }else {
+                foreach($err as $er) {
+                    echo $alert->alert('danger', $er, 'fas fa-exclamation-triangle');
+                }
+            }
         }
         
         public function register() {
