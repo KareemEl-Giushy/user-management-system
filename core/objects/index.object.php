@@ -10,7 +10,7 @@ include '../templates/msg.inc.php';
             // "email=&password=&action="
             $inp = new input_handler();
             /* Sanitization */
-            $email = $inp->sanitize($_POST['email'], 'email');
+            $email = trim( $inp->sanitize($_POST['email'], 'email') );
             $password = trim( $inp->sanitize($_POST['password'], 'st') );
 
             /* Validation */
@@ -33,7 +33,7 @@ include '../templates/msg.inc.php';
                     // User Exists Redirect Him To Home Page
                     // User In our database and his password and email is correct
 
-                    
+
 
                 }elseif($msg == 0) {
                     // user credintials is wrong
