@@ -36,7 +36,7 @@
                                                 <i class="far fa-envelope fa-lg"></i>
                                             </span>
                                         </div>
-                                        <input type="email" name="email" id="email" class="form-control rounded-0" placeholder="Email" required autofocus>
+                                        <input type="email" name="email" id="email" class="form-control rounded-0" placeholder="Email" required <?php if(isset($_COOKIE['email']) && !empty($_COOKIE['email'])){ echo "value='" . $_COOKIE['email'] . "'"; }else{ echo 'autofocus'; } ?>>
                                         <!--div class="invalid-feedback">
                                             Enter A Valid Email Address.
                                         </div-->
@@ -51,7 +51,7 @@
                                     </div>
                                     <div class="form-group">
                                         <div class="custom-control custom-checkbox float-left">
-                                            <input type="checkbox" name="rem" id="custom-checkbox" class="custom-control-input">
+                                            <input type="checkbox" name="rem" id="custom-checkbox" class="custom-control-input" <?php if(isset($_COOKIE['email']) && !empty($_COOKIE['email'])){ echo 'checked'; } ?>>
                                             <label for="custom-checkbox" class="custom-control-label" style="cursor:pointer;">Remember Me</label>
                                         </div>
                                         <div class="float-right">

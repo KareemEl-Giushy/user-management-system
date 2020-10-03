@@ -33,7 +33,7 @@ require_once 'connect.inc.php';
 
         function login($email, $password) {
             if($this->user_exist($email)){
-                $stmt = $this->conn->prepare("SELECT email, `password` FROM users WHERE email = ? AND `password` = ?");
+                $stmt = $this->conn->prepare("SELECT email, `password` FROM users WHERE email = ? AND `password` = ? AND deleted = 0");
                 $stmt->execute([
                     $email,
                     $password
@@ -55,6 +55,16 @@ require_once 'connect.inc.php';
                 return false;
             }
 
+        }
+        
+        function rememberme($reqval, $email) {
+            if($reqval == 'on') {
+
+                setcookie('email', $email, time() + 7*24*30*30, '/');
+
+            }elseif($reqval == "expire") {
+                setcookie('email', '', time() - 3600, '/');
+            }
         }
 
         function logout() {

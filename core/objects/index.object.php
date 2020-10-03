@@ -34,7 +34,8 @@ include '../templates/msg.inc.php';
                     // User Exists Redirect Him To Home Page
                     // User In our database and his password and email is correct
                     $_SESSION['user-email'] = $email;
-
+                    $rem = ( isset($_POST['rem']) && !empty($_POST['rem']) ) ? trim( $inp->sanitize($_POST['rem'], 'st') ) : 'expire';
+                    $user->rememberme($rem, $email);
 
                 }elseif($msg == 0) {
                     // user credintials is wrong

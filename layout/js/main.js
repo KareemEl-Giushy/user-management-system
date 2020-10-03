@@ -156,7 +156,7 @@ $(document).ready(function () {
     /*
     var loginForm = $("#login-form"),
         lEmail = $("#email"),
-        lPass = $("#password");*/
+        lPass = $("#password"); */
         $("#email").on('keyup', function() {
             formValidationText(this);
         });
@@ -173,11 +173,12 @@ $(document).ready(function () {
                     method: "POST",
                     url: "core/objects/index.object.php",
                     async: true,
-                    data: {
+                    data: $("#login-form").serialize() + "&action=login",
+                    /*data: {
                         email: $("#email").val(),
                         password: $("#password").val(),
                         action: "login",
-                    },
+                    },*/
                     success: function (rt, rs, xhr) {
                         console.log(rs);
                         console.log(rt);
