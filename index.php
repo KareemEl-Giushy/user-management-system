@@ -1,3 +1,12 @@
+<?php
+    include 'core/functions/auth.php';
+    $user = new auth();
+    $user->startsession();
+    if(isset($_SESSION['user-email']) && empty($_SESSION['user-email'])) {
+        header("location: home.php");
+        exit();
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

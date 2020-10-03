@@ -9,9 +9,9 @@ require_once 'connect.inc.php';
             }
         }
         
-        function isUser() {
+        function isUser($url = "index.php") {
             if(!isset($_SESSION['user-email'])) {
-                header("location: index.php");
+                header("location: $url");
                 exit();
             }
         }
