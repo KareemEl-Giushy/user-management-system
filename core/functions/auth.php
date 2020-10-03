@@ -4,7 +4,16 @@ require_once 'connect.inc.php';
     class auth extends database {
 
         function startSession() {
-            session_start();
+            if(session_status() <= 1) {
+                session_start();
+            }
+        }
+        
+        function isUser() {
+            if(!isset($_SESSION['user-email'])) {
+                header("location: index.php");
+                exit();
+            }
         }
 
         function register($fname, $lname, $email, $password) {

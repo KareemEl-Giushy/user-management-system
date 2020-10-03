@@ -1,10 +1,11 @@
 <?php
+    include 'core/functions/auth.php';
+
     ob_start();
-    session_start();
-    if(!isset($_SESSION['user-email'])) {
-        header("location: index.html");
-        exit();
-    } ?>
+    $user = new auth();
+    $user->startsession();
+    $user->isuser();
+ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,5 +18,4 @@
     <a href="logout.php">logout</a>
 </body>
 </html>
-<?php
-    ob_end_flush(); ?>
+<?php ob_end_flush(); ?>
