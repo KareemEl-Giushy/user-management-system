@@ -182,7 +182,7 @@ $(document).ready(function () {
                         console.log(rs);
                         console.log(rt);
                         if(rt == "") {
-
+                            window.location = 'home.php';
                         }else {
                             $("#msg-box-login").append(rt);
                         }

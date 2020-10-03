@@ -30,9 +30,10 @@ include '../templates/msg.inc.php';
                 $msg = $user->login($email, $hpass);
 
                 if($msg > 0) {
+                    $user->startSession();
                     // User Exists Redirect Him To Home Page
                     // User In our database and his password and email is correct
-
+                    $_SESSION['user-email'] = $email;
 
 
                 }elseif($msg == 0) {

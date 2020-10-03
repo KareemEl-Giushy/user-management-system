@@ -3,6 +3,10 @@ require_once 'connect.inc.php';
 
     class auth extends database {
 
+        function startSession() {
+            session_start();
+        }
+
         function register($fname, $lname, $email, $password) {
             if( !$this->user_exist($email, $password) ) {
                 $stmt = $this->conn->prepare("INSERT INTO users(first_name, last_name, email, `password`) VALUES (:fname, :lname, :email, :pass)");
@@ -42,6 +46,12 @@ require_once 'connect.inc.php';
                 return false;
             }
 
+        }
+
+        function logout() {
+            session_start();
+            session_unset();
+            session_destroy();
         }
 
     }
