@@ -9,7 +9,7 @@ require_once 'connect.inc.php';
             }
         }
         
-        function isUser($url = "index.php") {
+        function redirect($url = "index.php") {
             if(!isset($_SESSION['user-email'])) {
                 header("location: $url");
                 exit();
@@ -64,6 +64,16 @@ require_once 'connect.inc.php';
 
             }elseif($reqval == "expire") {
                 setcookie('email', '', time() - 3600, '/');
+            }
+        }
+
+        function userinfo($email) {
+            if($this->user_exist($email)) {
+                $stmt = $this->conn->prepare("SELECT * FROM users WHERE email = ? AND deleted = 0");
+                $stmt->execute([$email]);
+                $info = $stmt->fetch(PDO::FETCH_ASSOC);
+                unset($info['password']);
+                return $info;
             }
         }
 

@@ -196,8 +196,36 @@ $(document).ready(function () {
                 $("#f-msg-login").css("display", "block");
             }
         });
-    
-
-
+     /* ====== ResetPassword Form ====== */
+        /* var rpform = $('#reset-form'),
+               rpemail = $('#cemail'); */
+        
+        $('#cemail').keyup(function () {
+            formValidationText(this);
+        });
+        
+        $("#reset-form input[type='submit']").click(function (e) {
+            e.preventDefault();
+            var email = formValidationText(document.getElementById('cemail'));
+            if(email) {
+            
+                $.ajax({
+                    method: 'POST',
+                    url: 'core/objects/index.object.php',
+                    async: true,
+                    data: $("#reset-form").serialize() + '&action=resetpass',
+                    success: function (rt, rs, xhr) {
+                        console.log(rs);
+                        console.log(rt);
+                    },
+                    error: function (xhr, rs, rt) {
+                        // console.log(rt);
+                        // console.log(rs);
+                        // console.log(xhr);
+                    }
+                });
+            }
+            
+        });
     // End Document Ready
 });

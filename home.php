@@ -4,7 +4,13 @@
     ob_start();
     $user = new auth();
     $user->startsession();
-    $user->isuser();
+    $user->redirect();
+    $userinfo = $user->userinfo($_SESSION['user-email']);
+
+    // Testing :
+    echo '<pre>';
+    var_dump($userinfo);
+    echo '</pre>';
  ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -14,7 +20,7 @@
     <title>Home</title>
 </head>
 <body>
-    <div><?php echo $_SESSION['user-email'] ?></div>
+    <div><?php echo $userinfo['email']; ?></div>
     <a href="logout.php">logout</a>
 </body>
 </html>
