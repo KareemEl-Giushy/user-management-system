@@ -131,7 +131,10 @@ include '../templates/msg.inc.php';
 
             $alert = new msg();
             if(empty($err)) {
-
+                $user = new auth();
+                $msg = $user->reset_password($email);
+                echo $msg;
+                
             }else {
                 foreach($err as $er) {
                     echo $alert->alert('danger', $er, 'fas fa-exclamation-triangle');
@@ -139,6 +142,8 @@ include '../templates/msg.inc.php';
             }
 
         }
+
+        // End Class INDEX
     }
 
     /* Requests Handling */

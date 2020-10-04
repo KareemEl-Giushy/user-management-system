@@ -43,7 +43,21 @@ require_once 'connect.inc.php';
                 return "There Is No User With This Email Address";
             }
         }
+        function reset_password($email) {
+            if($this->user_exist($email)) {
+                $token = $this->create_token('rp');
+            
+                $stmt = $this->conn->prepare("UPDATE users SET token = :token, token_expire = DATE_ADD(NOW(), INTERVAL 15 MINUTE) WHERE email = :email");
+                $stmt->execute([
+                    'email' => $email,
+                    'token' => $token
+                ]);
 
+                return $stmt->rowCount();
+            }else {
+                return "There Is No User With This Email Address";
+            }
+        }
         function user_exist($email) {
             $stmt = $this->conn->prepare("SELECT email FROM users WHERE email = ?");
             $stmt->execute([$email]);
@@ -65,6 +79,12 @@ require_once 'connect.inc.php';
             }elseif($reqval == "expire") {
                 setcookie('email', '', time() - 3600, '/');
             }
+        }
+
+        function create_token($pre = "") {
+            $token = uniqid();
+            $token = $pre . str_shuffle($token);
+            return $token;
         }
 
         function userinfo($email) {
