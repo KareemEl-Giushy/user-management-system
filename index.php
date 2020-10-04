@@ -203,6 +203,7 @@
                                     <div class="form-group">
                                         <input type="submit" value="Sign In" class="btn btn-primary btn-block btn-lg btn-block btn-sign-style">
                                     </div>
+                                    <div class="form-group" id="msg-box-r"></div>
                                 </form>
                             </div>
                         </div>

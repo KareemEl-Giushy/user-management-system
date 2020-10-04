@@ -117,6 +117,26 @@ include '../templates/msg.inc.php';
         }
         
         public function reset_password() {
+            // email=&action=
+            /* Sanitize */
+            $inp = new input_handler();
+
+            $email = $inp->sanitize($_POST['email'], 'email');
+
+            /* Validate */
+            $err = [];
+            if(!empty( $inp->validate($email, ['empty', 'email']) )) {
+                $err[] = 'Please Enter A Valid Email Address';
+            }
+
+            $alert = new msg();
+            if(empty($err)) {
+
+            }else {
+                foreach($err as $er) {
+                    echo $alert->alert('danger', $er, 'fas fa-exclamation-triangle');
+                }
+            }
 
         }
     }

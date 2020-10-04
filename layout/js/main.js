@@ -217,6 +217,8 @@ $(document).ready(function () {
                     success: function (rt, rs, xhr) {
                         console.log(rs);
                         console.log(rt);
+
+                        $('#msg-box-r').append(rt);
                     },
                     error: function (xhr, rs, rt) {
                         // console.log(rt);
