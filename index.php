@@ -189,6 +189,7 @@
                                 <p class="text-capitalize text-center p-2">To Reset Your Password, Enter Email Address And we will send you an email with the instructions</p>
                                 <hr class="my-3">
                                 <form action="#" method="post" class="px-1" id="reset-form">
+                                    <div class="form-group" id="msg-box-r"></div>
                                     <div class="input-group input-group-lg form-group">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text rounded">
@@ -203,7 +204,6 @@
                                     <div class="form-group">
                                         <input type="submit" value="Sign In" class="btn btn-primary btn-block btn-lg btn-block btn-sign-style">
                                     </div>
-                                    <div class="form-group" id="msg-box-r"></div>
                                 </form>
                             </div>
                         </div>

@@ -2,6 +2,7 @@
 include '../functions/input_handler.inc.php';
 include '../functions/auth.php';
 include '../templates/msg.inc.php';
+include '../functions/mailer.php';
 
     class index {
 
@@ -133,7 +134,17 @@ include '../templates/msg.inc.php';
             if(empty($err)) {
                 $user = new auth();
                 $msg = $user->reset_password($email);
-                echo $msg;
+                if($msg > 0) {
+                    $token = $user->create_token();
+                    if(reset_password($email, $token)) {
+                        echo $alert->alert('success', 'Please Check Your Email Address', 'fas fa-check-circle');
+                    }else {
+                        echo $alert->alert('warning', 'Somthing Went Wrong !', 'fas fa-exclamation-triangle');
+                    }
+                    
+                }else {
+                    echo $alert->alert('danger', $msg, 'fas fa-exclamation-triangle');
+                }
                 
             }else {
                 foreach($err as $er) {
