@@ -11,8 +11,8 @@
 </head>
 <body>
     <div class="container">
-    <div class="row justify-content-center wrapper m-1">
-            <div class="col-lg-7 my-auto">
+    <div class="row justify-content-center wrapper">
+            <div class="col col-lg-8 my-auto">
                 <div class="card-group login-shadow row">
                     <div class="col p-0">
                         <div class="card rounded-left">
@@ -20,7 +20,6 @@
                                 <h2 class="card-title text-capitalize text-center text-primary font-weight-bold">Reset Your Password</h2>
                                 <hr class="my-3">
                                 <form action="#" method="post" class="px-1" id="login-form">
-                                    <div class="input-group input-group-lg form-group">
                                     <div class="input-group input-group-lg form-group">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text rounded">
@@ -35,10 +34,13 @@
                                                 <i class="fas fa-key fa-lg"></i>
                                             </span>
                                         </div>
-                                        <input type="password" name="password" id="rrpassword" class="form-control rounded-0" placeholder="Rewrite Password" required>
+                                        <input type="password" name="password" id="rrpassword" class="form-control rounded-0" placeholder="Confirm New-Password" required>
                                     </div>
                                     <div class="form-group w-100 text-center">
                                         <input type="submit" value="Sign In" class="btn btn-primary btn-block btn-lg btn-block btn-sign-style">
+                                    </div>
+                                    <div class="form-group text-center m-0">
+                                        <a href="index.php" class='text-primary'>Go Back</a>
                                     </div>
                                 </form>
                             </div>
