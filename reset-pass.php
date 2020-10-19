@@ -26,7 +26,7 @@
                                                 <i class="fas fa-key fa-lg"></i>
                                             </span>
                                         </div>
-                                        <input type="password" name="password" id="rpassword" class="form-control rounded-0" placeholder="New-Password" required>
+                                        <input type="password" name="password" id="password" class="form-control rounded-0" placeholder="New-Password" required>
                                     </div>
                                     <div class="input-group input-group-lg form-group">
                                         <div class="input-group-prepend">
@@ -34,7 +34,7 @@
                                                 <i class="fas fa-key fa-lg"></i>
                                             </span>
                                         </div>
-                                        <input type="password" name="password" id="rrpassword" class="form-control rounded-0" placeholder="Confirm New-Password" required>
+                                        <input type="password" name="password" id="rpassword" class="form-control rounded-0" placeholder="Confirm New-Password" required>
                                     </div>
                                     <div class="form-group w-100 text-center">
                                         <input type="submit" value="Sign In" class="btn btn-primary btn-block btn-lg btn-block btn-sign-style">
@@ -50,5 +50,8 @@
             </div>
         </div>
     </div>
+    <!-- Javascripts -->
+    <script src="layout/js/jquery-3.5.1.min.js"></script>
+    <script src='layout/js/reset-pass.js'></script>
 </body>
 </html>
