@@ -8,7 +8,7 @@ use PHPMailer\PHPMailer\Exception;
 // Load Composer's autoloader
 require '../vendor/autoload.php';
 
-function reset_password($useremail, $token) {
+function reset_mailer($useremail, $token) {
     
     $mail = new PHPMailer();
     

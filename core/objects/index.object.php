@@ -136,8 +136,8 @@ include '../functions/mailer.php';
                 $msg = $user->reset_password($email);
                 if($msg > 0) {
                     $token = $user->create_token();
-                    if(reset_password($email, $token)) {
-                        echo $alert->alert('success', 'Please Check Your Email Address', 'fas fa-check-circle');
+                    if(reset_mailer($email, $token)) {
+                        echo $alert->alert('success', 'Please Check Your Email', 'fas fa-check-circle');
                     }else {
                         echo $alert->alert('warning', 'Somthing Went Wrong !', 'fas fa-exclamation-triangle');
                     }

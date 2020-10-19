@@ -1,3 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reset Password</title>
+    <link rel="icon" type="image/png" href="favicon.png"/>
+    <link rel="stylesheet" href="layout/css/all.min.css">
+    <link rel="stylesheet" href="layout/css/bootstrap.min.css">
+    <link rel="stylesheet" href="layout/css/style.css">
+</head>
 <?php
     include 'core/functions/auth.php';
     include 'core/functions/input_handler.inc.php';
@@ -27,6 +38,10 @@
         header('location: index.php');
         exit();
     }
+    if($user->check_token_reset($email, $token)){
+        header('location: index.php');
+        exit();
+    }
     // echo $email . "<br>" . $token;
 
     // submitting data
@@ -49,26 +64,20 @@
         if( !empty($inp->validate($repassword, ['empty', 'len', 're'], $password)) ) {
             $err[] = 'Bad Confirmation';
         }
-
+        
+        
         if(empty($err)) {
-            echo 'execute';
-        }else {
-            foreach($err as $er) {
-                echo $er;
+            $crows = $user->change_pass($email);
+            if($crows > 0) {
+                // Display Message
+                echo "<div class='alert alert-success text-center'><strong>Success</strong><div class='text-center'><a href='index.php'>Go To Login</a></div></div>";
+                exit();
             }
+        }else {
+          echo '<div class="alert alert-danger text-center"><strong>Error</strong></div>';
+          exit();
         }
     } ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reset Password</title>
-    <link rel="icon" type="image/png" href="favicon.png"/>
-    <link rel="stylesheet" href="layout/css/all.min.css">
-    <link rel="stylesheet" href="layout/css/bootstrap.min.css">
-    <link rel="stylesheet" href="layout/css/style.css">
-</head>
 <body>
     <div class="container">
     <div class="row justify-content-center wrapper">
