@@ -52,7 +52,7 @@ $(document).ready(function () {
     });
 
     // send request
-    $('input[type="submit"]').click(function(e) {
+    /*$('input[type="submit"]').click(function(e) {
         e.preventDefault();
         var p = formValidationPass(document.getElementById("password"));
         var r = formValidationPass(document.getElementById("rpassword"));
@@ -77,5 +77,5 @@ $(document).ready(function () {
             });    
         
         }
-    });
+    }); */
 });

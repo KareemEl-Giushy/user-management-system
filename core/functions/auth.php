@@ -10,7 +10,7 @@ require_once 'connect.inc.php';
         }
         
         function redirect($url = "index.php") {
-            if(!isset($_SESSION['user-email'])) {
+            if( !isset($_SESSION['user-email']) && empty($_SESSION['user-email']) ) {
                 header("location: $url");
                 exit();
             }
@@ -43,6 +43,7 @@ require_once 'connect.inc.php';
                 return "There Is No User With This Email Address";
             }
         }
+
         function reset_password($email) {
             if($this->user_exist($email)) {
                 $token = $this->create_token('rp');
@@ -58,8 +59,37 @@ require_once 'connect.inc.php';
                 return "There Is No User With This Email Address";
             }
         }
+
+        function check_token_reset($email, $token) {
+            if($this->user_exist($email)) {
+                $stmt = $this->conn->prepare("SELECT * FROM users WHERE email = :email AND token = :token");
+                $stmt->execute([
+                    'email' => $email,
+                    'token' => $token
+                ]);
+
+                if($stmt->rowcount() > 0) {
+                    return true;
+                }else {
+                    return false;
+                }
+            }
+        }
+
+        function change_pass($email, $newPass) {
+            if($this->user_exist($email)) {
+                $stmt = $this->conn->prepare("UPDATE users SET `password` = :newpassword WHERE email = :email AND deleted = 0");
+                $stmt->execute([
+                    'newpassword' => $newPass,
+                    "email" => $email
+                ]);
+
+                return $stmt->rowCount();
+            }
+        }
+
         function user_exist($email) {
-            $stmt = $this->conn->prepare("SELECT email FROM users WHERE email = ?");
+            $stmt = $this->conn->prepare("SELECT email FROM users WHERE email = ? AND deleted = 0");
             $stmt->execute([$email]);
             $crows = $stmt->rowCount();
             

@@ -1,3 +1,63 @@
+<?php
+    include 'core/functions/auth.php';
+    include 'core/functions/input_handler.inc.php';
+
+    ob_start();
+    $user = new auth();
+    $user->startSession();
+    if( isset($_SESSION['user-email']) && !empty($_SESSION['user-email']) ){
+        header('location: index.php');
+        exit();
+    }elseif( !isset($_GET['email']) && !isset($_GET['token']) ) {
+        header('location: index.php');
+        exit();
+    }
+    
+    $inp = new input_handler();
+    // Sanitize
+    $email = $inp->sanitize($_GET['email'], 'email');
+    $token = $inp->sanitize($_GET['token'], 'st');
+
+    // Validate
+    if( !empty($inp->validate($email, ['empty', 'email', 'nos'])) ) {
+        header('location: index.php');
+        exit();
+    }
+    if( !empty($inp->validate($token, ['empty'])) ) {
+        header('location: index.php');
+        exit();
+    }
+    // echo $email . "<br>" . $token;
+
+    // submitting data
+    if($_SERVER['REQUEST_METHOD'] == 'POST') {
+        // Check if the field exists
+        if(!isset($_POST['password']) && !isset($_POST['rpassword'])){
+            header('location: index.php');
+            exit();
+        }
+
+        // sanitize
+        $password = $inp->sanitize($_POST['password'], 'st');
+        $repassword = $inp-> Sanitize($_POST['rpassword'], 'st');
+
+        // validate
+        $err = [];
+        if( !empty($inp->validate($password, ['empty', 'len'])) ){
+            $err[] = 'Invalid Password';
+        }
+        if( !empty($inp->validate($repassword, ['empty', 'len', 're'], $password)) ) {
+            $err[] = 'Bad Confirmation';
+        }
+
+        if(empty($err)) {
+            echo 'execute';
+        }else {
+            foreach($err as $er) {
+                echo $er;
+            }
+        }
+    } ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -34,7 +94,7 @@
                                                 <i class="fas fa-key fa-lg"></i>
                                             </span>
                                         </div>
-                                        <input type="password" name="password" id="rpassword" class="form-control rounded-0" placeholder="Confirm New-Password" required>
+                                        <input type="password" name="rpassword" id="rpassword" class="form-control rounded-0" placeholder="Confirm New-Password" required>
                                     </div>
                                     <div class="form-group w-100 text-center">
                                         <input type="submit" value="Sign In" class="btn btn-primary btn-block btn-lg btn-block btn-sign-style">
