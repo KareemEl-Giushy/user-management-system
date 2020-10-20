@@ -40,8 +40,9 @@
     }
     if(!$user->user_exist($email)){
         header('location: index.php');
+        exit();
     }
-    if($user->check_token_reset($email, $token)){
+    if(!$user->check_token_reset($email, $token)){
         header('location: index.php');
         exit();
     }

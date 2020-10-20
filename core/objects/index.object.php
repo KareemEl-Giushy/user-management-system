@@ -133,9 +133,9 @@ include '../functions/mailer.php';
             $alert = new msg();
             if(empty($err)) {
                 $user = new auth();
-                $msg = $user->reset_password($email);
+                $token = $user->create_token();
+                $msg = $user->reset_password($email, $token);
                 if($msg > 0) {
-                    $token = $user->create_token();
                     if(reset_mailer($email, $token)) {
                         echo $alert->alert('success', 'Please Check Your Email', 'fas fa-check-circle');
                     }else {

@@ -44,9 +44,8 @@ require_once 'connect.inc.php';
             }
         }
 
-        function reset_password($email) {
+        function reset_password($email, $token) {
             if($this->user_exist($email)) {
-                $token = $this->create_token('rp');
             
                 $stmt = $this->conn->prepare("UPDATE users SET token = :token, token_expire = DATE_ADD(NOW(), INTERVAL 15 MINUTE) WHERE email = :email");
                 $stmt->execute([
