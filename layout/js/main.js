@@ -204,7 +204,8 @@ $(document).ready(function () {
             formValidationText(this);
         });
         
-        $("#reset-form input[type='submit']").click(function (e) {
+        $("#reset-form button[type='submit']").click(function (e) {
+            $("#reset-form button[type='submit']").attr('disabled', 'disabled').empty().append('<i class="fas fa-spinner fa-spin"></i>' + ' Please Wait ...');
             e.preventDefault();
             var email = formValidationText(document.getElementById('cemail'));
             if(email) {
@@ -219,6 +220,8 @@ $(document).ready(function () {
                         console.log(rt);
 
                         $('#msg-box-r').append(rt);
+                        $('#cemail').val('');
+                        $("#reset-form button[type='submit']").removeAttr('disabled').empty().append('Send Email');
                     },
                     error: function (xhr, rs, rt) {
                         // console.log(rt);

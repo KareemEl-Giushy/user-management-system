@@ -202,7 +202,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <input type="submit" value="Sign In" class="btn btn-primary btn-block btn-lg btn-block btn-sign-style">
+                                        <button type="submit" class="btn btn-primary btn-block btn-lg btn-block btn-sign-style">Send Email</button>
                                     </div>
                                 </form>
                             </div>

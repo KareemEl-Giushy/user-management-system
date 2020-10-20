@@ -38,6 +38,9 @@
         header('location: index.php');
         exit();
     }
+    if(!$user->user_exist($email)){
+        header('location: index.php');
+    }
     if($user->check_token_reset($email, $token)){
         header('location: index.php');
         exit();
@@ -67,10 +70,15 @@
         
         
         if(empty($err)) {
-            $crows = $user->change_pass($email);
+            $hpass = sha1($password);
+            $crows = $user->change_pass($email, $hpass);
             if($crows > 0) {
                 // Display Message
                 echo "<div class='alert alert-success text-center'><strong>Success</strong><div class='text-center'><a href='index.php'>Go To Login</a></div></div>";
+                exit();
+            }else {
+                // Error Message
+                echo '<div class="alert alert-danger text-center"><strong>Error</strong></div>';
                 exit();
             }
         }else {
