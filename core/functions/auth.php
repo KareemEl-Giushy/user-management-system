@@ -61,7 +61,7 @@ require_once 'connect.inc.php';
 
         function check_token_reset($email, $token) {
             if($this->user_exist($email)) {
-                $stmt = $this->conn->prepare("SELECT * FROM users WHERE email = :email AND token = :token");
+                $stmt = $this->conn->prepare("SELECT * FROM users WHERE email = :email AND token = :token AND token_expire > NOW() AND deleted = 0");
                 $stmt->execute([
                     'email' => $email,
                     'token' => $token
