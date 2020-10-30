@@ -205,10 +205,10 @@ $(document).ready(function () {
         });
         
         $("#reset-form button[type='submit']").click(function (e) {
-            $("#reset-form button[type='submit']").attr('disabled', 'disabled').empty().append('<i class="fas fa-spinner fa-spin"></i>' + ' Please Wait ...');
             e.preventDefault();
             var email = formValidationText(document.getElementById('cemail'));
             if(email) {
+                $("#reset-form button[type='submit']").attr('disabled', 'disabled').empty().append('<i class="fas fa-spinner fa-spin"></i>' + ' Please Wait ...');
             
                 $.ajax({
                     method: 'POST',
