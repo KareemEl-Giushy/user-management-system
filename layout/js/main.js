@@ -186,6 +186,7 @@ $(document).ready(function () {
                             window.location = 'home.php';
                         }else {
                             $("#msg-box-login").append(rt);
+                            $('#password').val('');
                         }
                     },
                     error: function (xhr, rs, rt) {
