@@ -18,6 +18,7 @@
                     <link rel="icon" type="image/png" href="' . $this->icon . '"/>
                     <link rel="stylesheet" href="layout/css/all.min.css">
                     <link rel="stylesheet" href="layout/css/bootstrap.min.css">
+                    <link rel="stylesheet" href="layout/css/datatables.min.css">
                     <link rel="stylesheet" href="layout/css/style.css">
                 </head>
                 <body> ';
@@ -70,6 +71,7 @@
                     <!-- javascipt -->
                     <script src="layout/js/jquery-3.5.1.min.js"></script>
                     <script src="layout/js/bootstrap.bundle.min.js"></script>
+                    <script src="layout/js/datatables.min.js"></script>
                     <script src="layout/js/main.js"></script>
                 </footer>
             </body>
