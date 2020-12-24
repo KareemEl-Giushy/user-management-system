@@ -43,7 +43,7 @@ include '../functions/mailer.php';
                     echo $alert->alert('danger', "Incorrect Email Or Password", 'fas fa-exclamation-triangle');
                
                 }else {
-                    echo $alert->alert('danger', $msg, 'fas fa-exclamation-triangle');
+                    echo $alert->alert('danger', "There Is No User With This Email Address", 'fas fa-exclamation-triangle');
                 }
             }else {
                 foreach($err as $er) {

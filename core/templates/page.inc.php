@@ -65,14 +65,22 @@
             </nav>';
         }
 
-        public function footer() {
+        public function footer($scripts = []) {
             echo '
                 <footer>
                     <!-- javascipt -->
                     <script src="layout/js/jquery-3.5.1.min.js"></script>
                     <script src="layout/js/bootstrap.bundle.min.js"></script>
                     <script src="layout/js/datatables.min.js"></script>
-                    <script src="layout/js/main.js"></script>
+                    ';
+                    
+            if(!empty($scripts)){
+                foreach($scripts as $src){
+                    echo "<script src='$src'></script>";
+                }
+            }
+                    
+            echo'
                 </footer>
             </body>
             </html>';

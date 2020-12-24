@@ -13,7 +13,7 @@
     // echo '</pre>';
     
     $page = new page();
-    $page->header();
+    $page->header("Home");
     $page->navbar($userinfo['first_name']);
  ?>
 
@@ -29,7 +29,7 @@
         Email Address Is <strong> Not verified</strong>
     </div>
     <?php endif;?>
-    <h3 class='text-light text-center'>Write Your Notes Here !</h3>
+    <h3 class='text-light text-center my-4'>Write Your Notes Here !</h3>
     <div class="card">
         <h4 class="card-header d-flex justify-content-between">
             <span class=''>All Notes</span>
@@ -125,12 +125,6 @@
 </div>
 
 <?php 
-    $page->footer();
+    $page->footer(['layout/js/home.js']);
     ob_end_flush();
 ?>
-<!-- Scripts -->
-<script>
-    $(document).ready(function () {
-        $('#datatable').DataTable();
-    });
-</script>

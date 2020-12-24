@@ -206,4 +206,4 @@
         <!-- Forget Password End -->
     </div>
 <?php
-    $page->footer();
+    $page->footer(['layout/js/main.js', 'layout/js/main.js']);

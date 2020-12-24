@@ -40,7 +40,7 @@ require_once 'connect.inc.php';
                 ]);
                 return $stmt->rowCount();
             }else {
-                return "There Is No User With This Email Address";
+                return 0;
             }
         }
 
