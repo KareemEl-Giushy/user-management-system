@@ -7,6 +7,16 @@ include '../functions/mailer.php';
     class home {
         
         public function add_note() {
+        
+            // Sanitize Data Input
+            $inp = new input_handler();
+            $title = $inp->sanitize($_POST["title"], "st");
+            $note = $inp->sanitize($_POST["note"], "st");
+            
+            // Validate Data Input
+            if(!empty( $inp->validate($title, ['empty']) )) {
+                $err = "Note Title Can't Be Empty";
+            }
 
         }
 
@@ -21,3 +31,23 @@ include '../functions/mailer.php';
 
     // End home class
     }
+
+if($_SERVER['REQUEST_METHOD'] == "POST") {
+    
+    $home = new home();
+    if($_POST['action'] == "add_note") {
+    
+        $home->add_note();
+
+    }
+    if($_POST['action'] == "edit_note") {
+
+        $home->edit_note();
+
+    }
+    if($_POST['action'] == "delete_note") {
+
+        $home->delete_note();
+
+    }
+}

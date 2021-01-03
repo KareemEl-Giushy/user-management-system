@@ -39,29 +39,33 @@ $(document).ready(function () {
    });
 
     // make the Ajax Request
-    $("#add-note-form button").click(function (){
-
-            console.log("Done");
-            $.ajax({
-                method: 'POST',
-                url: '',
-                async: true,
-                data: {
-                    'title': $("#add-note-form input[name='title']").val(),
-                    'note':$("#add-note-form textarea"),
-                    'action': 'add_note'
-                },
-                success: function (rs,rt,xhr) {
-                    conosole.log(rs);
-                    conosole.log(rt);
-                    conosole.log(xhr);
-                },
-                error: function (rs,rt,xhr) {
-                    conosole.log(rs);
-                    conosole.log(rt);
-                    conosole.log(xhr);
-                }
-            });
-
+    $("#add-note-form button").click(function (e){
+            e.preventDefault();
+            var text = this.innerHTML;
+            if(formValidationText(document.getElementsByName("title")[0])) {
+                $("#add-note-form button").empty().append('<i class="fas fa-spinner fa-spin"></i>' + " Please Wait ...");
+                console.log("Done");
+                $.ajax({
+                    method: 'POST',
+                    url: 'core/objects/home.object.php',
+                    async: true,
+                    data: {
+                        'title': $("#add-note-form input[type='text']").val(),
+                        'note': $("#add-note-form textarea").val(),
+                        'action': 'add_note'
+                    },
+                    success: function (rt,rs,xhr) {
+                        console.log(rt);
+                        console.log(rs);
+                        console.log(xhr);
+                        $("#add-note-form button").empty().html(text);
+                    },
+                    error: function (xhr,rs,rt) {
+                        console.log(xhr);
+                        console.log(rs);
+                        console.log(rt);
+                    }
+                });
+            }
     });
 });
