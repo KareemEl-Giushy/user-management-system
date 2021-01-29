@@ -4,7 +4,7 @@ include '../functions/Auth.php';
 include '../templates/MSG.inc.php';
 include '../functions/mailer.php';
 
-    class index {
+    class Index {
 
 
         public function login() {
@@ -35,6 +35,7 @@ include '../functions/mailer.php';
                     // User Exists Redirect Him To Home Page
                     // User In our database and his password and email is correct
                     $_SESSION['user-email'] = $email;
+                    $_SESSION["info"] = $user->userinfo($email);
                     $rem = ( isset($_POST['rem']) && !empty($_POST['rem']) ) ? trim( $inp->sanitize($_POST['rem'], 'st') ) : 'expire';
                     $user->rememberme($rem, $email);
 
@@ -160,7 +161,7 @@ include '../functions/mailer.php';
     /* Requests Handling */
     if($_SERVER['REQUEST_METHOD'] == "POST") {
         // var_dump($_POST);
-        $act = new index();
+        $act = new Index();
         
         if($_POST['action'] == 'register') {
             $act->register();

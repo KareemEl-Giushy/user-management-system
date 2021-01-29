@@ -1,5 +1,5 @@
 <?php 
-    class database {
+    class Database {
         private $dsn = "mysql:host=localhost;dbname=db_user_system";
         private $user = "root";
         private $pass = "";

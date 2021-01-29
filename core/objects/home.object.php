@@ -3,8 +3,8 @@ include '../functions/input_handler.inc.php';
 include '../functions/Auth.php';
 include '../templates/MSG.inc.php';
 include '../functions/mailer.php';
-
-    class home {
+Auth::startSession();
+    class Home extends Auth{
         
         public function add_note() {
         
@@ -17,7 +17,17 @@ include '../functions/mailer.php';
             if(!empty( $inp->validate($title, ['empty']) )) {
                 $err = "Note Title Can't Be Empty";
             }
+            if(empty($err)) {
 
+                $stmt = $this->conn->prepare("INSERT INTO notes (`uid`, `title`, `note`)VALUES(:userid, :title, :note)");
+                $stmt->execute([
+                    "userid" => $_SESSION["info"]["id"],
+                    "title" => $title,
+                    "note" => $note
+                ]);
+            }else {
+                echo $err;
+            }
         }
 
         public function edit_note() {
@@ -33,8 +43,8 @@ include '../functions/mailer.php';
     }
 
 if($_SERVER['REQUEST_METHOD'] == "POST") {
-    
-    $home = new home();
+
+    $home = new Home();
     if($_POST['action'] == "add_note") {
     
         $home->add_note();

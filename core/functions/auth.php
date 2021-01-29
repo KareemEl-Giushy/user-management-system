@@ -1,22 +1,22 @@
 <?php
 require_once 'connect.inc.php';
 
-    class Auth extends database {
+    class Auth extends Database {
 
-        function startSession() {
+        public static function startSession() {
             if(session_status() <= 1) {
                 session_start();
             }
         }
         
-        function redirect($url = "index.php") {
+        public function redirect($url = "index.php") {
             if( !isset($_SESSION['user-email']) && empty($_SESSION['user-email']) ) {
                 header("location: $url");
                 exit();
             }
         }
 
-        function register($fname, $lname, $email, $password) {
+        public function register($fname, $lname, $email, $password) {
             if( !$this->user_exist($email, $password) ) {
                 $stmt = $this->conn->prepare("INSERT INTO users(first_name, last_name, email, `password`) VALUES (:fname, :lname, :email, :pass)");
                 $stmt->execute([
@@ -31,7 +31,7 @@ require_once 'connect.inc.php';
             }
         }
 
-        function login($email, $password) {
+        public function login($email, $password) {
             if($this->user_exist($email)){
                 $stmt = $this->conn->prepare("SELECT email, `password` FROM users WHERE email = ? AND `password` = ? AND deleted = 0");
                 $stmt->execute([
@@ -44,7 +44,7 @@ require_once 'connect.inc.php';
             }
         }
 
-        function reset_password($email, $token) {
+        public function reset_password($email, $token) {
             if($this->user_exist($email)) {
             
                 $stmt = $this->conn->prepare("UPDATE users SET token = :token, token_expire = DATE_ADD(NOW(), INTERVAL 15 MINUTE) WHERE email = :email");
@@ -59,7 +59,7 @@ require_once 'connect.inc.php';
             }
         }
 
-        function check_token_reset($email, $token) {
+        public function check_token_reset($email, $token) {
             if($this->user_exist($email)) {
                 $stmt = $this->conn->prepare("SELECT * FROM users WHERE email = :email AND token = :token AND token_expire > NOW() AND deleted = 0");
                 $stmt->execute([
@@ -75,7 +75,7 @@ require_once 'connect.inc.php';
             }
         }
 
-        function change_pass($email, $newPass) {
+        public function change_pass($email, $newPass) {
             if($this->user_exist($email)) {
                 $stmt = $this->conn->prepare("UPDATE users SET `password` = :newpassword WHERE email = :email AND deleted = 0");
                 $stmt->execute([
@@ -87,7 +87,7 @@ require_once 'connect.inc.php';
             }
         }
 
-        function user_exist($email) {
+        public function user_exist($email) {
             $stmt = $this->conn->prepare("SELECT email FROM users WHERE email = ? AND deleted = 0");
             $stmt->execute([$email]);
             $crows = $stmt->rowCount();
@@ -100,7 +100,7 @@ require_once 'connect.inc.php';
 
         }
         
-        function rememberme($reqval, $email) {
+        public function rememberme($reqval, $email) {
             if($reqval == 'on') {
 
                 setcookie('email', $email, time() + 7*24*30*30, '/');
@@ -110,13 +110,13 @@ require_once 'connect.inc.php';
             }
         }
 
-        function create_token($pre = "") {
+        public function create_token($pre = "") {
             $token = uniqid();
             $token = $pre . str_shuffle($token);
             return $token;
         }
 
-        function userinfo($email) {
+        public function userinfo($email) {
             if($this->user_exist($email)) {
                 $stmt = $this->conn->prepare("SELECT * FROM users WHERE email = ? AND deleted = 0");
                 $stmt->execute([$email]);
@@ -126,7 +126,7 @@ require_once 'connect.inc.php';
             }
         }
 
-        function logout() {
+        public static function logout() {
             session_start();
             session_unset();
             session_destroy();

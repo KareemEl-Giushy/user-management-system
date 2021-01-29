@@ -59,6 +59,9 @@ $(document).ready(function () {
                         console.log(rs);
                         console.log(xhr);
                         $("#add-note-form button").empty().html(text);
+                        if(rt != "") {
+                            $("#addnote .modal-footer").append("<div class='alert alert-danger alert-dismissable w-100'><i class='fas fa-exclamation-triangle'></i><strong> " + rt + "</strong><button data-dismiss='alert' class='close'>&times;</button</div>");
+                        }
                     },
                     error: function (xhr,rs,rt) {
                         console.log(xhr);

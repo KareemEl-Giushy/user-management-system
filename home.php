@@ -6,6 +6,9 @@
     $user->startsession();
     $user->redirect();
     $userinfo = $user->userinfo($_SESSION['user-email']);
+    $stmt = $user->conn->prepare("SELECT * FROM notes WHERE `uid` = ?");
+    $stmt->execute([$_SESSION["info"]["id"]]);
+    $usernotes = $stmt->fetchall(PDO::FETCH_ASSOC);
 
     // Testing :
     // echo '<pre>';
@@ -21,12 +24,12 @@
     <?php if($userinfo['verify'] > 0):?>
     <div class="alert alert-success alert-dismissible text-center mt-2">
         <button class="close" data-dismiss="alert">&times;</button>
-        Email Address Is verified successfully
+        <i class="far fa-check-square"></i> Email Address Is verified successfully
     </div>
     <?php else:?>
-    <div class="alert alert-danger alert-dismissible text-center mt-2">
+    <div class="alert alert-warning alert-dismissible text-center mt-2">
         <button class="close" data-dismiss="alert">&times;</button>
-        Email Address Is <strong> Not verified</strong>
+        <i class="fas fa-exclamation-triangle"></i> Email Address Is <strong> Not verified</strong>
     </div>
     <?php endif;?>
     <h3 class='text-light text-center my-4'>Write Your Notes Here !</h3>
@@ -44,26 +47,22 @@
                     <th scope="col">Action</th>
                 </thead>
                 <tbody>
+                    <?php 
+                        $counter = 0;
+                        foreach($usernotes as $note):
+                        $counter++;
+                        ?>
                     <tr>
-                        <td scope="row">1</td>
-                        <td>Note Number 1</td>
-                        <td>Hello World</td>
+                        <td scope="row"><?php echo $counter; ?></td>
+                        <td><?php echo $note["title"]; ?></td>
+                        <td><?php echo $note["note"]; ?></td>
                         <td>
                             <a href="#" title="View Info" class="text-success p-2"><i class="fas fa-info-circle fa-lg"></i></a>
                             <a href="#" title="Edit Note" class="text-primary p-2"><i class="fas fa-edit fa-lg" data-toggle="modal" data-target="#editnote"></i></a>
                             <a href="#" title="Delete Note" class="text-danger p-2"><i class="fas fa-trash-alt fa-lg"></i></a>
                         </td>
                     </tr>
-                    <tr>
-                        <td scope="row">2</td>
-                        <td>Note Number 2</td>
-                        <td>Hello World 2</td>  
-                        <td>
-                            <a href="#" title="View Info" class="text-success p-2"><i class="fas fa-info-circle fa-lg"></i></a>
-                            <a href="#" title="Edit Note" class="text-primary p-2"><i class="fas fa-edit fa-lg"></i></a>
-                            <a href="#" title="Delete Note" class="text-danger p-2"><i class="fas fa-trash-alt fa-lg"></i></a>
-                        </td>
-                    </tr>
+                    <?php endforeach;?>
                 </tbody>
             </table>
         </div>
