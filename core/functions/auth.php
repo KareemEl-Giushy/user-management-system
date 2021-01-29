@@ -1,7 +1,7 @@
 <?php
 require_once 'connect.inc.php';
 
-    class auth extends database {
+    class Auth extends database {
 
         function startSession() {
             if(session_status() <= 1) {

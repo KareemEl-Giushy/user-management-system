@@ -1,7 +1,7 @@
 <?php
 include '../functions/input_handler.inc.php';
-include '../functions/auth.php';
-include '../templates/msg.inc.php';
+include '../functions/Auth.php';
+include '../templates/MSG.inc.php';
 include '../functions/mailer.php';
 
     class index {
@@ -24,10 +24,10 @@ include '../functions/mailer.php';
                 $err[] = "Password Can't Be Empty";
             }
 
-            $alert = new msg();
+            $alert = new MSG();
             if(empty($err)) {
                 $hpass = sha1($password);
-                $user = new auth();
+                $user = new Auth();
                 $msg = $user->login($email, $hpass);
 
                 if($msg > 0) {
@@ -92,10 +92,10 @@ include '../functions/mailer.php';
                 }
 
                 // Register Data
-                $alert = new msg();
+                $alert = new MSG();
                 if(empty($err)){
                     $hpass = sha1($pass);
-                    $user = new auth();
+                    $user = new Auth();
                     $msg = $user->register(
                         $first_name,
                         $last_name,
@@ -130,9 +130,9 @@ include '../functions/mailer.php';
                 $err[] = 'Please Enter A Valid Email Address';
             }
 
-            $alert = new msg();
+            $alert = new MSG();
             if(empty($err)) {
-                $user = new auth();
+                $user = new Auth();
                 $token = $user->create_token();
                 $msg = $user->reset_password($email, $token);
                 if($msg > 0) {

@@ -1,7 +1,7 @@
 <?php
 include '../functions/input_handler.inc.php';
-include '../functions/auth.php';
-include '../templates/msg.inc.php';
+include '../functions/Auth.php';
+include '../templates/MSG.inc.php';
 include '../functions/mailer.php';
 
     class home {

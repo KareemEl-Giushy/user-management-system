@@ -10,11 +10,11 @@
     <link rel="stylesheet" href="layout/css/style.css">
 </head>
 <?php
-    include 'core/functions/auth.php';
+    include 'core/functions/Auth.php';
     include 'core/functions/input_handler.inc.php';
 
     ob_start();
-    $user = new auth();
+    $user = new Auth();
     $user->startSession();
     if( isset($_SESSION['user-email']) && !empty($_SESSION['user-email']) ){
         header('location: index.php');

@@ -1,14 +1,14 @@
 <?php
-    include 'core/functions/auth.php';
-    include 'core/templates/page.inc.php';
-    $user = new auth();
+    include 'core/functions/Auth.php';
+    include 'core/templates/Page.inc.php';
+    $user = new Auth();
     $user->startsession();
     if(isset($_SESSION['user-email']) && !empty($_SESSION['user-email'])) {
         header("location: home.php");
         exit();
     }
 
-    $page = new page();
+    $page = new Page();
     $page->header('Kareem System');
 ?>
     <div class="container">

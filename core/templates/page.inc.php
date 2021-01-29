@@ -1,5 +1,5 @@
 <?php
-    class page {
+    class Page {
         
         public $icon = '';
 

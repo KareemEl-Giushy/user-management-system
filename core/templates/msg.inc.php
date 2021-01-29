@@ -1,6 +1,6 @@
 <?php
 
-    class msg {
+    class MSG {
         function alert($type, $msg, $icon = "") {
             return"
                 <div class='alert alert-$type alert-dismissable'>

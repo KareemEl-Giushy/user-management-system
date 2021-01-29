@@ -1,8 +1,8 @@
 <?php
-    include 'core/functions/auth.php';
-    include 'core/templates/page.inc.php';
+    include 'core/functions/Auth.php';
+    include 'core/templates/Page.inc.php';
     ob_start();
-    $user = new auth();
+    $user = new Auth();
     $user->startsession();
     $user->redirect();
     $userinfo = $user->userinfo($_SESSION['user-email']);
@@ -12,7 +12,7 @@
     // var_dump($userinfo);
     // echo '</pre>';
     
-    $page = new page();
+    $page = new Page();
     $page->header("Home");
     $page->navbar($userinfo['first_name']);
  ?>
