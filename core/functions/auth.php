@@ -9,7 +9,7 @@ require_once 'connect.inc.php';
             }
         }
         
-        public function redirect($url = "index.php") {
+        public static function redirect($url = "index.php") {
             if( !isset($_SESSION['user-email']) && empty($_SESSION['user-email']) ) {
                 header("location: $url");
                 exit();

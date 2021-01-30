@@ -30,6 +30,29 @@ Auth::startSession();
             }
         }
 
+        public function get_notes() {
+            $stmt = $this->conn->prepare("SELECT * FROM notes WHERE `uid` = ?");
+            $stmt->execute([$_SESSION["info"]["id"]]);
+            $usernotes = $stmt->fetchall(PDO::FETCH_ASSOC);
+
+            $counter = 0;
+            foreach($usernotes as $note):
+            $counter++; ?>
+                    <tr>
+                        <td scope="row"><?php echo $counter; ?></td>
+                        <td><?php echo $note["title"]; ?></td>
+                        <td><?php echo strlen($note['note']) > 70 ? substr($note["note"], 0, 70) . "...." : $note['note'] ; ?></td>
+                        <td>
+                            <a href="#" title="View Info" class="text-success p-2"><i class="fas fa-info-circle fa-lg"></i></a>
+                            <a href="#" title="Edit Note" class="text-primary p-2"><i class="fas fa-edit fa-lg" data-toggle="modal" data-target="#editnote"></i></a>
+                            <a href="#" title="Delete Note" class="text-danger p-2"><i class="fas fa-trash-alt fa-lg"></i></a>
+                        </td>
+                    </tr>
+        <?php
+            endforeach;
+
+        }
+
         public function edit_note() {
 
         }
@@ -43,11 +66,18 @@ Auth::startSession();
     }
 
 if($_SERVER['REQUEST_METHOD'] == "POST") {
+    
+    Auth::redirect();
 
     $home = new Home();
     if($_POST['action'] == "add_note") {
     
         $home->add_note();
+
+    }
+    if($_POST['action'] == "get_notes") {
+
+        $home->get_notes();
 
     }
     if($_POST['action'] == "edit_note") {

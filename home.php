@@ -6,9 +6,6 @@
     $user->startsession();
     $user->redirect();
     $userinfo = $user->userinfo($_SESSION['user-email']);
-    $stmt = $user->conn->prepare("SELECT * FROM notes WHERE `uid` = ?");
-    $stmt->execute([$_SESSION["info"]["id"]]);
-    $usernotes = $stmt->fetchall(PDO::FETCH_ASSOC);
 
     // Testing :
     // echo '<pre>';
@@ -33,7 +30,7 @@
     </div>
     <?php endif;?>
     <h3 class='text-light text-center my-4'>Write Your Notes Here !</h3>
-    <div class="card">
+    <div class="card mb-5">
         <h4 class="card-header d-flex justify-content-between">
             <span class=''>All Notes</span>
             <button class="btn btn-primary" data-toggle='modal' data-target="#addnote"><i class="fas fa-plus-circle fa-lg"></i>&nbsp;Add A Note</button>
@@ -47,22 +44,7 @@
                     <th scope="col">Action</th>
                 </thead>
                 <tbody>
-                    <?php 
-                        $counter = 0;
-                        foreach($usernotes as $note):
-                        $counter++;
-                        ?>
-                    <tr>
-                        <td scope="row"><?php echo $counter; ?></td>
-                        <td><?php echo $note["title"]; ?></td>
-                        <td><?php echo $note["note"]; ?></td>
-                        <td>
-                            <a href="#" title="View Info" class="text-success p-2"><i class="fas fa-info-circle fa-lg"></i></a>
-                            <a href="#" title="Edit Note" class="text-primary p-2"><i class="fas fa-edit fa-lg" data-toggle="modal" data-target="#editnote"></i></a>
-                            <a href="#" title="Delete Note" class="text-danger p-2"><i class="fas fa-trash-alt fa-lg"></i></a>
-                        </td>
-                    </tr>
-                    <?php endforeach;?>
+
                 </tbody>
             </table>
         </div>
@@ -124,6 +106,6 @@
 </div>
 
 <?php 
-    $page->footer(['layout/js/home.js']);
+    $page->footer(["layout/js/sweetalert2@10.js", 'layout/js/home.js']);
     ob_end_flush();
 ?>

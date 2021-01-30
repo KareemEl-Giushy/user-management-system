@@ -1,6 +1,31 @@
 $(document).ready(function () {
-    // Make the table features
-    $('#datatable').DataTable();
+
+    // Dispaly all notes from the database
+    function displayallnotes() {
+        $.ajax({
+            method: "POST",
+            url: "core/objects/home.object.php",
+            async: true,
+            data: "action=get_notes",
+            success: function (rt, rs, xhr) {
+                // console.log(rt);
+                // console.log(rs);
+                // console.log(xhr);
+                if(rt != ""){
+                    $("#datatable tbody").html(rt);
+                    // Make the table features
+                    $('#datatable').DataTable();
+                }
+            },
+            error: function (xhr, rs, rt) {
+                // console.log(rt);
+                // console.log(rs);
+                // console.log(xhr);
+            }
+        });
+    }
+    // Desplay Existing Notes
+    displayallnotes();
 
     // add new note request
     /*
@@ -61,6 +86,15 @@ $(document).ready(function () {
                         $("#add-note-form button").empty().html(text);
                         if(rt != "") {
                             $("#addnote .modal-footer").append("<div class='alert alert-danger alert-dismissable w-100'><i class='fas fa-exclamation-triangle'></i><strong> " + rt + "</strong><button data-dismiss='alert' class='close'>&times;</button</div>");
+                        }else {
+                            $("#add-note-form")[0].reset()
+                            $("#addnote").modal("hide");
+                            Swal.fire({
+                                icon: "success",
+                                title: "Note Added Successfuly !"
+                            });
+                            
+                            displayallnotes();
                         }
                     },
                     error: function (xhr,rs,rt) {
@@ -71,4 +105,5 @@ $(document).ready(function () {
                 });
             }
     });
+
 });
